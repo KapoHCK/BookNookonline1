@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Book Nook</title>
+    <title>რეგისტრაცია - Book Nook</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,31 +11,32 @@
         <img src="images/Purple and Pink Circle Cool and Funky Computer Logo.png" alt="Book Nook Logo" class="logo">
         <h1>BookNook • ბუქნუქი</h1>
         <nav class="navbar">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="books.html" class="nav-link">Books</a>
-            <a href="register.html" class="nav-link">Register</a>
+            <a href="index.html" class="nav-link">სახლი</a>
+            <a href="books.html" class="nav-link">წიგნები</a>
+            <a href="register.html" class="nav-link">რეგისტრაცია</a>
         </nav>
     </header>
     <main>
         <section class="registration-form">
-            <h2>Register</h2>
+            <h2>რეგისტრაცია</h2>
             <form action="register_process.php" method="post">
-                <label for="username">Username</label>
+                <label for="username">მომხმარებლის სახელი</label>
                 <input type="text" id="username" name="username" required>
                 
-                <label for="email">Email</label>
+                <label for="email">ელ. ფოსტა</label>
                 <input type="email" id="email" name="email" required>
                 
-                <label for="password">Password</label>
+                <label for="password">პაროლი</label>
                 <input type="password" id="password" name="password" required>
                 
-                <input type="submit" value="Register">
+                <input type="submit" value="რეგისტრაცია">
             </form>
         </section>
     </main>
     <footer>
         <p>&copy; 2024 BookNook. All rights reserved.</p>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>
 
