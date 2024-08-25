@@ -8,14 +8,24 @@
 </head>
 <body>
     <header>
-        <h1>BookNook • ბუქნუქი</h1>
-        <nav class="navbar">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="books.html" class="nav-link">Books</a>
-            <a href="register.html" class="nav-link">Register</a>
-            <a href="login.html" class="nav-link">Login</a>
-            <a href="contact.html" class="nav-link">Contact</a>
-        </nav>
+        <div class="navbar-container">
+            <!-- Hamburger Menu -->
+            <div class="hamburger-menu" id="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <a href="index.html" class="logo">
+                <img src="/home/kapo/Downloads/Purple and Pink Circle Cool and Funky Computer Logo.png" alt="Book Nook Logo">
+            </a>
+            <nav class="navbar" id="navbar">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="books.html" class="nav-link">Books</a>
+                <a href="register.html" class="nav-link">Register</a>
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+        </div>
     </header>
     <main>
         <section class="hero">
@@ -23,14 +33,27 @@
             <p>Your favorite place for eBooks</p>
             <a href="books.html" class="cta-button">Explore Books</a>
         </section>
+        <section class="overview">
+            <h2>About Us</h2>
+            <p>Book Nook-ის ორგანიზაცია მზად არის ყველაზე საინტერესო და აუცილებელი წიგნები გახადოს ყველასათვის ხელმისაწვდომი.</p>
+            <p>ამიტომ ჩვენ გთავაზობთ ყველა ჩვენს ნათარგმნ წიგნს ორიგინალ ფასთან შედარებით 50%-ით ნაკლებად (ნახევარ ფასად), რაც ყველას გაუადვილებს პირადი ბიბლიოთეკის შექმნას.</p>
+            <p>გამოიკვლიეთ ჩვენი მრავალფეროვანი კოლექცია და აღმოაჩინეთ ახალი სამყაროები Book Nook-თან ერთად.</p>
+        </section>
         <section class="cta">
             <p>For inquiries, contact us on Facebook:</p>
-            <a href="https://www.facebook.com/profile.php?id=61562893725953" class="cta-button">Contact us on Facebook</a>
+            <a href="https://www.facebook.com/profile.php?id=61562893725953" class="cta-button">Contact Us</a>
         </section>
     </main>
     <footer>
         <p>&copy; 2024 BookNook. All rights reserved.</p>
     </footer>
+    <script>
+        // JavaScript for the hamburger menu
+        document.getElementById('hamburger-menu').addEventListener('click', function() {
+            var navbar = document.getElementById('navbar');
+            navbar.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
 
