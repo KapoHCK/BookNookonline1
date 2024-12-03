@@ -1,45 +1,49 @@
-/* საერთო სტილები */
 body {
-    font-family: "Arial", sans-serif;
-    background-color: #f7f7f7; /* ნაზი ფონი */
-    color: #333; /* ტექსტის ძირითადი ფერი */
+    background-color: #000000; /* შავი ფონზე */
+    color: #ffffff; /* თეთრი ტექსტი */
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* სრულად ეკრანზე ცენტრში განლაგება */
+}
+header {
+    background-color: #FFCC00; /* ყვითელი ლოგო ფერი */
+    color: #1E90FF; /* ლურჯი ტექსტი */
+    padding: 20px;
     text-align: center;
 }
-
-/* მთავარი სათაური */
 h1 {
-    font-size: 2.5em; /* დიდი ზომის სათაური */
-    color: #2c3e50; /* მუქი ლურჯი ფერი */
-    margin-bottom: 20px; /* სივრცე სათაურისა და ტექსტს შორის */
+    font-size: 36px;
+    margin: 0;
 }
-
-/* აბზაცები */
-p {
-    font-size: 1.2em; /* წაკითხვადი ზომა ტექსტისთვის */
-    line-height: 1.6; /* სივრცე სტრიქონებს შორის */
-    max-width: 600px; /* ტექსტის მაქსიმალური სიგანე */
-    margin: 10px auto; /* ცენტრში განლაგება */
+.content {
+    padding: 20px;
+    text-align: center;
 }
-
-/* ქვედა ტექსტი (footer) */
-footer {
+.content p {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+.highlight {
+    color: #FFCC00; /* ყვითელი ტექსტი */
+}
+.button-container {
     margin-top: 20px;
-    font-size: 0.9em; /* პატარა ზომის ტექსტი */
-    color: #777; /* რბილი ნაცრისფერი ფერი */
 }
-
-/* მობილური მოწყობილობებისთვის */
-@media (max-width: 600px) {
-    h1 {
-        font-size: 2em; /* პატარა ეკრანებზე შემცირებული სათაური */
-    }
-    p {
-        font-size: 1em; /* ტექსტის ზომის ადაპტირება */
-    }
+.button {
+    background-color: #1E90FF; /* ლურჯი ღილაკი */
+    color: #ffffff; /* თეთრი ტექსტი ღილაკზე */
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px;
+}
+.button:hover {
+    background-color: #FFCC00; /* ყვითელი ღილაკი:hover */
+    color: #000000; /* შავი ტექსტი:hover */
 }
