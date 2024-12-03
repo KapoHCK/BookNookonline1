@@ -5,34 +5,41 @@ body {
     margin: 0;
     padding: 0;
 }
+
 header {
-    background-color: #FFCC00; /* ყვითელი ლოგო ფერი */
-    color: #1E90FF; /* ლურჯი ტექსტი */
+    background-color: #1E90FF; /* ლურჯი */
+    color: #FFCC00; /* ყვითელი */
     padding: 20px;
     text-align: center;
 }
+
 h1 {
     font-size: 36px;
     margin: 0;
 }
+
 .content {
     padding: 20px;
     text-align: center;
 }
+
 .content p {
     font-size: 20px;
     line-height: 1.6;
     margin-bottom: 20px;
 }
+
 .highlight {
     color: #FFCC00; /* ყვითელი ტექსტი */
 }
+
 .button-container {
     margin-top: 20px;
 }
+
 .button {
-    background-color: #1E90FF; /* ლურჯი ღილაკი */
-    color: #ffffff; /* თეთრი ტექსტი ღილაკზე */
+    background-color: #FFCC00; /* ყვითელი ღილაკი */
+    color: #1E90FF; /* ლურჯი ტექსტი ღილაკზე */
     border: none;
     padding: 10px 20px;
     font-size: 18px;
@@ -43,7 +50,8 @@ h1 {
     display: inline-block;
     margin: 5px;
 }
+
 .button:hover {
-    background-color: #FFCC00; /* ყვითელი ღილაკი:hover */
-    color: #000000; /* შავი ტექსტი:hover */
+    background-color: #1E90FF; /* ლურჯი ღილაკი:hover */
+    color: #FFFFFF; /* თეთრი ტექსტი:hover */
 }
