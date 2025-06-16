@@ -1,26 +1,66 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="ka">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ბუქნუქი</title>
-    <!-- აქ ხდება CSS ფაილის დაკავშირება -->
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BookNook - შენი ციფრული ბიბლიოთეკა</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Manrope:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>ბუქნუქი – წიგნები ფსიქოლოგიაზე და არა მხოლოდ</h1>
-    </header>
-    <div class="content">
-        <p><span class="highlight">ბუქნუქი</span> არის ადგილი, სადაც თქვენთვის ხელმისაწვდომი ხდება წიგნები, რომლებიც ეხება ფსიქოლოგიას და ადამიანის ბუნების გასაგებად აუცილებელ ცოდნას. ჩვენ გთავაზობთ ისეთ წიგნებს, რომლებიც ამჟამად აქტუალურია ფსიქოლოგიაში, შიდაკულტურასა და მენტალურ ჯანმრთელობაში, რათა თქვენი ცოდნა და გაგება მუდამ მისაღები და თანამედროვე იყოს.</p>
-        
-        <p>ჩვენი კოლექცია შეიცავს წიგნებს, რომლებიც გაანალიზებენ ადამიანების მოტივაციას, ფიქრის პროცესებს, ემოციებს და ურთიერთობებს – ყველა იმ საკითხს, რომელიც დღეს განსაკუთრებული ყურადღების ქვეშაა. <span class="highlight">ბუქნუქი</span> მიზნად ისახავს, რომ თქვენთვის უზრუნველყოს საუკეთესო რესურსები, რომლებიც დაგეხმარებათ უკეთ გესმოდეთ როგორც საკუთარი თავი, ისე სხვა ადამიანები.</p>
 
-        <p><span class="highlight">ბუქნუქი</span> – სივრცე, სადაც მხოლოდ საინტერესო წიგნებია.</p>
-
-        <div class="button-container">
-            <a href="https://www.facebook.com/profile.php?id=61562893725953" target="_blank" class="button">დაგვიკავშირდით Facebook-ზე</a>
-        </div>
+    <div id="preloader">
+        <img src="images/loading.gif" alt="იტვირთება..." class="preloader-gif">
     </div>
+
+    <div id="site-wrapper">
+        <header class="site-header">
+            <a href="index.html" class="logo-link"><img src="images/booknook_logo.png" alt="BookNook ლოგო" class="logo"></a>
+            <nav class="main-nav">
+                <a href="index.html">მთავარი</a>
+                <a href="about.html">ჩვენს შესახებ</a>
+                <a href="contact.html">კონტაქტი</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content" data-aos="fade-in" data-aos-delay="500">
+                <h1 class="hero-title">BookNook</h1>
+                <p class="hero-subtitle">გონების ლაბირინთებში: წიგნები, რომლებიც ცვლის ხედვას</p>
+                <a href="#catalog" class="hero-button">კოლექციის ნახვა</a>
+            </div>
+        </section>
+
+        <main class="catalog-container" id="catalog">
+            <h2 class="catalog-title" data-aos="fade-up">რჩეული წიგნები</h2>
+            <div class="card-grid">
+                <a href="book-1.html" class="book-card-link" data-aos="fade-up" data-aos-delay="100">
+                    <div class="book-card">
+                        <img src="images/rogror_vimushaot.png" alt="როგორ ვიმუშაოთ საკუთარ თავზე" class="book-cover">
+                        <div class="book-info">
+                           <h3 class="book-title">როგორ ვიმუშაოთ საკუთარ თავზე</h3>
+                           <p class="book-author">ანა მორჩილაძე</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <p>&copy; 2025 BookNook. ყველა უფლება დაცულია.</p>
+        </footer>
+    </div>
+    
+    <a href="#" id="back-to-top" class="back-to-top-button">&#8593;</a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+    </script>
 </body>
 </html>
+```
