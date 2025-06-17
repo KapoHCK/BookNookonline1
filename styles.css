@@ -148,6 +148,7 @@ body {
 /* --- წიგნის დეტალური გვერდის ახალი, სრული დიზაინი --- */
 .book-detail-wrapper {
     display: flex;
+    align-items: flex-start;
     gap: 40px;
     max-width: 1100px;
     margin: 60px auto;
@@ -155,10 +156,11 @@ body {
 }
 
 .book-image-column {
-    flex: 2; /* იკავებს ხელმისაწვდომი სივრცის 2 ნაწილს */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    flex: 2;
+    position: -webkit-sticky;
+    position: sticky; /* ვაფიქსირებთ სურათს სქროლვისას */
+    top: 120px; /* დაშორება ზედა მენიუდან */
+    align-self: flex-start; /* ვასწორებთ კონტეინერის დასაწყისში */
 }
 
 .book-image-column img {
