@@ -1,41 +1,44 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ka">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>როგორ ვიმუშაოთ საკუთარ თავზე - BookNook</title>
-    <meta name="description" content="შეიძინეთ წიგნი 'როგორ ვიმუშაოთ საკუთარ თავზე'. ეს არის პრაქტიკული სახელმძღვანელო ყველასთვის, ვისაც სურს რეალური ზრდა.">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Manrope:wght@300;400;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>როგორ ვიმუშაოთ საკუთარ თავზე - BookNook</title>
+<meta name="description" content="შეიძინეთ წიგნი 'როგორ ვიმუშაოთ საკუთარ თავზე'. ეს არის პრაქტიკული სახელმძღვანელო ყველასთვის, ვისაც სურს რეალური ზრდა.">
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Manrope:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <div id="site-wrapper" class="visible">
 <header class="site-header scrolled">
-<a href="index.html" class="logo-link"><img src="images/booknook_logo.png" alt="BookNook ლოგო" class="logo"></a>
+<a href="/" class="logo-link"><img src="/images/booknook_logo.png" alt="BookNook ლოგო" class="logo"></a>
 <nav class="main-nav">
-<a href="index.html">მთავარი</a>
-<a href="about.html">ჩვენს შესახებ</a>
-<a href="contact.html">კონტაქტი</a>
+<a href="/">მთავარი</a>
+<a href="/about">ჩვენს შესახებ</a>
+<a href="/contact">კონტაქტი</a>
 </nav>
 </header>
 
-        <section class="page-header">
-            <h1 class="page-header-title">წიგნის დეტალები</h1>
-        </section>
-
-        <main class="main-content book-detail-container">
-            <div class="book-detail-image">
+        <main class="main-content book-detail-wrapper">
+            <div class="book-image-column">
                 <img src="images/rogror_vimushaot.png" alt="როგორ ვიმუშაოთ საკუთარ თავზე">
             </div>
-            <div class="book-detail-content">
-                <h1 class="book-title-large">როგორ ვიმუშაოთ საკუთარ თავზე</h1>
-                <p class="book-author-large">ანა მორელი</p
-                <div class="book-price">12 ₾</div>
+            <div class="book-content-column">
+                <p class="book-byline">ანა მორჩილაძე</p>
+                <h1 class="book-main-title">როგორ ვიმუშაოთ საკუთარ თავზე</h1>
                 <div class="book-full-description">
-                    <p>ეს არის გულწრფელი და პრაქტიკული სახელმძღვანელო ყველასთვის, ვისაც სურს შეწყვიტოს ერთ ადგილზე დგომა და დაიწყოს რეალური ზრდა...</p>
+                    <p>ეს არის გულწრფელი და პრაქტიკული სახელმძღვანელო ყველასთვის, ვისაც სურს შეწყვიტოს ერთ ადგილზე დგომა და დაიწყოს რეალური ზრდა. ის გასწავლით, თუ როგორ გადააქციოთ საკუთარი თავი თქვენი ცხოვრების მთავარ პროექტად.</p>
+                    <p>თქვენ შეისწავლით მეთოდებს, რომლებიც დაგეხმარებათ ააშენოთ თავდაჯერებულობა, გაიმყაროთ ნებისყოფა და მოიპოვოთ კონტროლი საკუთარ ბედზე.</p>
                 </div>
-                <a href="https://www.facebook.com/profile.php?id=61562893725953" class="hero-button" target="_blank">დაკავშირება ფეისბუქზე</a>
-                <a href="index.html" class="back-to-catalog">← კატალოგში დაბრუნება</a>
+                
+                <div class="purchase-box">
+                    <div class="price-tag">12 ₾</div>
+                    <a href="https://www.facebook.com/profile.php?id=61562893725953" class="purchase-button" target="_blank">Facebook-ზე დაკავშირება</a>
+                </div>
+
+                <a href="/" class="back-to-catalog">← კატალოგში დაბრუნება</a>
             </div>
         </main>
 
