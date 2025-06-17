@@ -184,3 +184,34 @@ body {
         padding-left: 0;
     }
 }
+
+/* --- შიდა გვერდების ტექსტების სიმეტრიის კორექცია --- */
+
+/* 'ჩვენს შესახებ' და 'კონტაქტის' გვერდის კონტენტის ცენტრირება */
+.about-content, .contact-form-container {
+    text-align: center;
+}
+
+/* წიგნის დეტალური გვერდის გასწორება */
+.book-detail-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ყველა ელემენტს ცენტრში ასწორებს */
+    text-align: center;
+}
+
+.book-full-description {
+    text-align: justify; /* დიდ აღწერას ვტოვებთ სწორხაზოვანს, კითხვადობისთვის */
+    max-width: 600px; /* ვაწესებთ მაქსიმალურ სიგანეს, რომ ტექსტი არ გაიშალოს */
+}
+
+/* ეს წესი უზრუნველყოფს, რომ Facebook-ის ღილაკი და "უკან დაბრუნება" ლამაზად დაჯდეს */
+.book-detail-content .hero-button,
+.book-detail-content .back-to-catalog {
+    display: inline-block;
+    margin: 10px;
+}
+
+.back-to-catalog {
+    width: fit-content; /* ღილაკი იკავებს მხოლოდ საჭირო სივრცეს */
+}
