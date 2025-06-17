@@ -159,3 +159,28 @@ body {
 .contact-form-container {
     padding: 2.5em;
 }
+
+/* --- წიგნის დეტალური გვერდის სიმეტრიის შესწორება --- */
+
+/* დესკტოპ ვერსია */
+.book-detail-container {
+    align-items: center; /* ვაცენტრებთ სურათს და ტექსტს ვერტიკალურად */
+}
+
+.book-detail-content {
+    display: flex;
+    flex-direction: column; /* ვალაგებთ ელემენტებს ვერტიკალურად */
+}
+
+.back-to-catalog {
+    margin-top: auto; /* ეს ღილაკს და "უკან დაბრუნებას" ბლოკის ბოლოში გადაიტანს */
+}
+
+/* მობილური ვერსია */
+@media (max-width: 768px) {
+    .book-detail-content {
+        text-align: center; /* ვაცენტრებთ ტექსტს და ღილაკს */
+        border-left: none;
+        padding-left: 0;
+    }
+}
