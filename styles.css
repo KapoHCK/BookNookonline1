@@ -160,58 +160,43 @@ body {
     padding: 2.5em;
 }
 
-/* --- წიგნის დეტალური გვერდის სიმეტრიის შესწორება --- */
+/* --- შიდა გვერდების განლაგების სრული კორექცია --- */
 
-/* დესკტოპ ვერსია */
+/* წიგნის დეტალური გვერდი */
 .book-detail-container {
-    align-items: center; /* ვაცენტრებთ სურათს და ტექსტს ვერტიკალურად */
+    display: flex;
+    align-items: center; /* ასწორებს სურათს და ტექსტს ვერტიკალურ ცენტრში */
+    gap: 50px; /* ზრდის დაშორებას სურათსა და ტექსტს შორის */
+}
+
+.book-detail-image {
+    flex: 1; /* იკავებს ხელმისაწვდომი სივრცის 1 ნაწილს */
+    text-align: center;
 }
 
 .book-detail-content {
-    display: flex;
-    flex-direction: column; /* ვალაგებთ ელემენტებს ვერტიკალურად */
+    flex: 2; /* იკავებს ხელმისაწვდომი სივრცის 2 ნაწილს, უფრო ფართოა */
 }
 
-.back-to-catalog {
-    margin-top: auto; /* ეს ღილაკს და "უკან დაბრუნებას" ბლოკის ბოლოში გადაიტანს */
+.book-price {
+    font-size: 2em; /* ფასის ტექსტის ზომა */
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 20px 0;
 }
 
-/* მობილური ვერსია */
-@media (max-width: 768px) {
-    .book-detail-content {
-        text-align: center; /* ვაცენტრებთ ტექსტს და ღილაკს */
-        border-left: none;
-        padding-left: 0;
-    }
-}
-
-/* --- შიდა გვერდების ტექსტების სიმეტრიის კორექცია --- */
-
-/* 'ჩვენს შესახებ' და 'კონტაქტის' გვერდის კონტენტის ცენტრირება */
+/* 'ჩვენს შესახებ' და 'კონტაქტის' გვერდები */
 .about-content, .contact-form-container {
     text-align: center;
 }
 
-/* წიგნის დეტალური გვერდის გასწორება */
-.book-detail-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* ყველა ელემენტს ცენტრში ასწორებს */
-    text-align: center;
-}
+/* --- რესპონსიულობა მობილურისთვის --- */
+@media (max-width: 768px) {
+    .book-detail-container {
+        flex-direction: column; /* ელემენტები ლაგდება ერთმანეთის ქვეშ */
+    }
 
-.book-full-description {
-    text-align: justify; /* დიდ აღწერას ვტოვებთ სწორხაზოვანს, კითხვადობისთვის */
-    max-width: 600px; /* ვაწესებთ მაქსიმალურ სიგანეს, რომ ტექსტი არ გაიშალოს */
-}
-
-/* ეს წესი უზრუნველყოფს, რომ Facebook-ის ღილაკი და "უკან დაბრუნება" ლამაზად დაჯდეს */
-.book-detail-content .hero-button,
-.book-detail-content .back-to-catalog {
-    display: inline-block;
-    margin: 10px;
-}
-
-.back-to-catalog {
-    width: fit-content; /* ღილაკი იკავებს მხოლოდ საჭირო სივრცეს */
+    .book-detail-content {
+        text-align: center; /* ვაცენტრებთ ტექსტს და ღილაკს */
+    }
 }
