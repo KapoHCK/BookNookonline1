@@ -189,12 +189,6 @@ body {
     margin: 0.2em 0 0.5em 0;
 }
 
-.book-full-description {
-    max-height: 250px; /* შეგიძლიათ, ეს სიმაღლე შეცვალოთ (მაგ. 200px) */
-    overflow-y: auto; /* ამატებს ვერტიკალურ სქროლს, თუ ტექსტი არ ეტევა */
-    padding-right: 10px; /* სქროლ-ბარისთვის დამატებითი ადგილი */
-}
-
 .book-full-description p {
     font-size: 1.1em;
     line-height: 1.8;
