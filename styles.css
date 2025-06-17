@@ -145,22 +145,21 @@ body {
     gap: 2em;
 }
 
-/* --- წიგნის დეტალური გვერდის ახალი, სრული დიზაინი --- */
+/* --- შიდა გვერდების განლაგების სრული კორექცია --- */
+
+/* წიგნის დეტალური გვერდი */
 .book-detail-wrapper {
     display: flex;
-    align-items: flex-start;
-    gap: 40px;
+    align-items: center; /* ასწორებს სურათს და ტექსტს ვერტიკალურ ცენტრში */
+    gap: 50px;
     max-width: 1100px;
     margin: 60px auto;
     padding: 20px;
 }
 
 .book-image-column {
-    flex: 2;
-    position: -webkit-sticky;
-    position: sticky; /* ვაფიქსირებთ სურათს სქროლვისას */
-    top: 120px; /* დაშორება ზედა მენიუდან */
-    align-self: flex-start; /* ვასწორებთ კონტეინერის დასაწყისში */
+    flex: 1;
+    text-align: center;
 }
 
 .book-image-column img {
@@ -172,9 +171,7 @@ body {
 }
 
 .book-content-column {
-    flex: 3; /* იკავებს ხელმისაწვდომი სივრცის 3 ნაწილს */
-    display: flex;
-    flex-direction: column;
+    flex: 1.5; /* ვაძლევთ ტექსტს მეტ ადგილს */
 }
 
 .book-byline {
@@ -200,7 +197,7 @@ body {
     background-color: var(--light-bg-color);
     border: 1px solid #e0e1dd;
     border-radius: 8px;
-    padding: 20px;
+    padding: 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -212,7 +209,7 @@ body {
     font-weight: 900;
     font-family: 'Playfair Display', serif;
     color: var(--primary-color);
-    white-space: nowrap; /* ხელს უშლის ტექსტის გაყოფას */
+    white-space: nowrap;
 }
 
 .purchase-button {
@@ -223,6 +220,7 @@ body {
     text-decoration: none;
     font-weight: bold;
     transition: all 0.3s ease;
+    text-align: center;
 }
 .purchase-button:hover {
     transform: translateY(-3px);
@@ -230,8 +228,8 @@ body {
 }
 
 .back-to-catalog {
-    margin-top: auto; /* აგზავნის ამ ბმულს ბლოკის ბოლოში */
-    padding-top: 20px;
+    display: block;
+    margin-top: 2em;
     color: var(--secondary-color);
     text-decoration: none;
     font-weight: bold;
@@ -241,5 +239,8 @@ body {
 @media (max-width: 768px) {
     .book-detail-wrapper {
         flex-direction: column;
+    }
+    .book-content-column {
+        text-align: center; /* ვაცენტრებთ ტექსტს და ღილაკს მობილურზე */
     }
 }
