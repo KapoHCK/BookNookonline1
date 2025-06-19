@@ -68,3 +68,136 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // ... (არსებული Preloader და Header/Back to Top ლოგიკა) ...
+
+    // --- 3. Book Preview Modal ლოგიკა ---
+    const bookPreviewModal = document.getElementById('bookPreviewModal');
+    const closeModalButton = bookPreviewModal.querySelector('.close-button');
+    const modalBookCover = document.getElementById('modalBookCover');
+    const modalBookTitle = document.getElementById('modalBookTitle');
+    const modalBookAuthor = document.getElementById('modalBookAuthor');
+    const bookPreviewPagesContainer = bookPreviewModal.querySelector('.book-preview-pages');
+    const prevPageBtn = document.getElementById('prevPageBtn');
+    const nextPageBtn = document.getElementById('nextPageBtn');
+    const pageCounter = document.getElementById('pageCounter');
+    let currentPage = 0;
+    let totalPages = 0;
+    let currentBookPages = []; // აქ შევინახავთ კონკრეტული წიგნის გვერდებს
+
+    // ფუნქცია, რომელიც აჩვენებს მოდალს
+    function openBookPreview(bookData) {
+        modalBookCover.src = bookData.cover;
+        modalBookTitle.textContent = bookData.title;
+        modalBookAuthor.textContent = bookData.author;
+
+        // გვერდების დინამიური ჩატვირთვა
+        bookPreviewPagesContainer.innerHTML = ''; // ვასუფთავებთ ძველ გვერდებს
+        currentBookPages = bookData.pages;
+        totalPages = currentBookPages.length;
+
+        currentBookPages.forEach((pageText, index) => {
+            const pageDiv = document.createElement('div');
+            pageDiv.classList.add('page-content');
+            pageDiv.id = `page${index + 1}`;
+            pageDiv.innerHTML = pageText; // გვერდის HTML კონტენტი
+
+            bookPreviewPagesContainer.appendChild(pageDiv);
+        });
+
+        currentPage = 0; // ვიწყებთ პირველი გვერდიდან
+        showPage(currentPage);
+
+        bookPreviewModal.classList.add('active'); // მოდალის გამოჩენა
+        document.body.style.overflow = 'hidden'; // გვერდის სქროლვის დაბლოკვა
+    }
+
+    // ფუნქცია, რომელიც აჩვენებს კონკრეტულ გვერდს
+    function showPage(index) {
+        const pages = bookPreviewPagesContainer.querySelectorAll('.page-content');
+        pages.forEach((page, i) => {
+            page.classList.remove('active-page');
+            // გვერდის "გადაფურცვლის" ანიმაციის წაშლა ყოველი გვერდის შეცვლაზე
+            page.style.animation = 'none';
+            page.offsetHeight; // force reflow
+        });
+
+        if (pages[index]) {
+            pages[index].classList.add('active-page');
+            pages[index].style.animation = 'pageFlipIn 0.5s ease-out'; // ანიმაციის ხელახლა დამატება
+        }
+        
+        // ღილაკების აქტივაცია/დეაქტივაცია
+        prevPageBtn.disabled = index === 0;
+        nextPageBtn.disabled = index === totalPages - 1;
+        pageCounter.textContent = `${index + 1} / ${totalPages}`;
+    }
+
+    // ფუნქცია, რომელიც ხურავს მოდალს
+    function closeBookPreview() {
+        bookPreviewModal.classList.remove('active'); // მოდალის დამალვა
+        document.body.style.overflow = ''; // გვერდის სქროლვის აღდგენა
+    }
+
+    // ღილაკზე დახურვა
+    closeModalButton.addEventListener('click', closeBookPreview);
+
+    // მოდალის გარეთ დაკლიკებით დახურვა
+    window.addEventListener('click', function(event) {
+        if (event.target === bookPreviewModal) {
+            closeBookPreview();
+        }
+    });
+
+    // გვერდებს შორის ნავიგაცია
+    prevPageBtn.addEventListener('click', function() {
+        if (currentPage > 0) {
+            currentPage--;
+            showPage(currentPage);
+        }
+    });
+
+    nextPageBtn.addEventListener('click', function() {
+        if (currentPage < totalPages - 1) {
+            currentPage++;
+            showPage(currentPage);
+        }
+    });
+
+    // --- 4. წიგნის ბარათებზე დაკლიკების ლოგიკა ---
+    // ეს არის მაგალითი! თქვენ დაგჭირდებათ მეტი bookData ობიექტი
+    // თითოეული წიგნისთვის.
+
+    // ვპოულობთ ყველა წიგნის ბარათს
+    const bookCardLinks = document.querySelectorAll('.book-card-link');
+
+    // მაგალითი: წიგნის მონაცემები (ეს უნდა მოიტანოთ სერვერიდან ან JSON ფაილიდან რეალურ პროექტში)
+    const bookDataExample = {
+        title: 'როგორ ვიმუშაოთ საკუთარ თავზე',
+        author: 'ანა მორჩილაძე',
+        cover: 'images/rogror_vimushaot.png', // ყდის სურათი
+        pages: [
+            // წინასიტყვაობა
+            `<h3>წინასიტყვაობა</h3><p>ეს არის გულწრფელი და პრაქტიკული სახელმძღვანელო ყველასთვის, ვისაც სურს შეწყვიტოს ერთ ადგილზე დგომა და დაიწყოს რეალური ზრდა. ის გასწავლით, თუ როგორ გადააქციოთ საკუთარი თავი თქვენი ცხოვრების მთავარ პროექტად.</p><p>დამატებითი ტექსტი წინასიტყვაობიდან, რომელიც განმარტავს წიგნის მნიშვნელობას და მის სარგებელს მკითხველისთვის. წინასიტყვაობა ხშირად შეიცავს ავტორის პირად ხედვას ან წიგნის შექმნის ისტორიას.</p>`,
+            // გვერდი 1
+            `<h3>თავი 1: გაცნობა</h3><p>ეს არის წიგნის პირველი გვერდის ამონარიდი. აქ დაიწყება ძირითადი თხრობა ან თემის განხილვა. მკითხველი გაეცნობა პირველ კონცეფციებს ან პერსონაჟებს, რომლებიც წიგნში გამოჩნდება.</p><p>დამატებითი ტექსტი პირველი თავიდან, რომელიც ავითარებს საწყის იდეებს და ნელ-ნელა ჩაითრევს მკითხველს წიგნის სამყაროში. გვერდების გადაფურცვლის ანიმაცია აქტიურდება.</p>`,
+            // შეგიძლიათ დაამატოთ მეტი გვერდი აქ:
+            // `<h3>თავი 1: გვერდი 2</h3><p>კიდევ ერთი გვერდის ტექსტი...</p>`,
+            // `<h3>დასკვნა</h3><p>მოკლე დასკვნა ან ეპილოგი...</p>`
+        ]
+    };
+
+    bookCardLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault(); // არ გადახვიდეს rogor-vimushaot-sakutar-tavze.html გვერდზე
+            
+            // ამ წიგნის მონაცემები აქ უნდა იყოს რეალურად დინამიურად მოტანილი
+            // (მაგ. data-attributes-დან ან ობიექტიდან ID-ით)
+            // ამ მაგალითისთვის პირდაპირ bookDataExample-ს ვიყენებ
+            openBookPreview(bookDataExample);
+        });
+    });
+
+}); // DOMContentLoaded end
