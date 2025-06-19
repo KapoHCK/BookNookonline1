@@ -6,11 +6,9 @@
     --primary-color: #0d1b2a; /* ღრმა მუქი ლურჯი */
     --secondary-color: #415a77; /* საშუალო ლურჯი */
     --accent-color: #e0e1dd; /* თბილი ღია ნაცრისფერი/კრემისფერი */
-    --text-color: #1b263b; /* მუქი ტექსტი */
-    --light-text-color: #f1faee; /* ღია ტექსტი */
+    --text-color: #1b263b;
+    --light-text-color: #f1faee;
     --bg-color: #ffffff;
-    --light-bg-color: #f8f9fa; 
-    --border-color: #e0e1dd; 
 }
 
 body {
@@ -19,9 +17,6 @@ body {
     color: var(--text-color);
     margin: 0;
     line-height: 1.7;
-    /* ეს padding-top რჩება! ის უზრუნველყოფს, რომ კონტენტი ჰედერის ქვემოთ იყოს
-       მაშინაც კი, როცა ჰედერი fixed გახდება სქროლისას. */
-    padding-top: 80px; 
 }
 
 /* --- Preloader (GIF-ით) --- */
@@ -39,8 +34,8 @@ body {
     transition: opacity 0.7s ease, visibility 0.7s ease;
 }
 .preloader-gif {
-    width: 60vw;
-    max-width: 400px;
+     width: 60vw; /* ეკრანის სიგანის 60% */
+    max-width: 400px; /* მაგრამ არა უმეტეს 400 პიქსელისა */
     height: auto;
 }
 #preloader.fade-out {
@@ -59,68 +54,37 @@ body {
 
 /* --- ჰედერი (მენიუ) --- */
 .site-header {
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center;
-    padding: 1.5em 2.5em; 
-    background-color: transparent; 
-    position: absolute; /* დავაბრუნეთ absolute-ზე, რომ JS-მა აკონტროლოს fixed */
-    top: 0; 
-    left: 0; 
-    right: 0; 
-    z-index: 1000;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5em 2.5em; background-color: transparent; position: absolute;
+    top: 0; left: 0; right: 0; z-index: 1000;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
-
-/* როდესაც ჰედერი არ არის დასქროლლი (გამჭვირვალე ფონზე, Hero სექციაზე) */
-.main-nav a {
-    color: var(--light-text-color); /* ღია ტექსტი მუქ ფონზე */
-    margin: 0 15px; 
-    text-decoration: none; 
-    font-weight: bold;
-    position: relative; 
-    padding-bottom: 8px; 
-    transition: color 0.3s ease;
-}
-
-/* როდესაც ჰედერი დასქროლლია (script.js-ის მიერ დამატებული 'scrolled' კლასი) */
 .site-header.scrolled {
-    position: fixed; /* JS ამატებს ამას */
-    background-color: rgba(255, 255, 255, 0.95); /* თეთრი, ცოტა ნაკლებად გამჭვირვალე ფონი */
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
-.site-header.scrolled .main-nav a { 
-    color: var(--text-color) !important; /* **აქ დავამატეთ !important** */
-}
-.site-header.scrolled .main-nav a::after { 
-    background-color: var(--primary-color) !important; /* **აქაც !important** */
-} 
-
+.site-header.scrolled .main-nav a { color: var(--text-color); }
+.site-header.scrolled .main-nav a::after { background-color: var(--primary-color); }
 .logo { max-width: 100px; }
-
+.main-nav a {
+    color: var(--light-text-color);
+    margin: 0 15px; text-decoration: none; font-weight: bold;
+    position: relative; padding-bottom: 8px; transition: color 0.3s ease;
+}
 .main-nav a::after {
-    content: ''; 
-    position: absolute; 
-    width: 0; 
-    height: 2px;
-    bottom: 0; 
-    left: 0; 
-    background-color: var(--accent-color); /* საწყისი ხაზის ფერი */
+    content: ''; position: absolute; width: 0; height: 2px;
+    bottom: 0; left: 0; background-color: var(--accent-color);
     transition: width 0.3s ease;
 }
 .main-nav a:hover::after { width: 100%; }
 
 /* --- Hero სექცია --- */
 .hero {
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    text-align: center;
-    min-height: 90vh; 
-    color: var(--light-text-color); 
-    padding: 2em;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    min-height: 90vh; color: var(--light-text-color); padding: 2em;
     background: linear-gradient(-45deg, #0d1b2a, #1b263b, #415a77, #778da9);
     background-size: 400% 400%;
     animation: gradient-animation 15s ease infinite;
@@ -136,11 +100,7 @@ body {
 }
 
 /* --- სხვადასხვა სექციები --- */
-.catalog-container, .content-container { 
-    max-width: 1200px; 
-    margin: 60px auto; 
-    padding: 20px; 
-}
+.catalog-container, .content-container { max-width: 1200px; margin: 60px auto; padding: 20px; }
 .catalog-title, .content-container h2 { text-align: center; font-size: 2.8em; font-family: 'Playfair Display', serif; margin-bottom: 1.5em; }
 
 /* --- წიგნის ბარათები --- */
@@ -190,10 +150,10 @@ body {
 /* წიგნის დეტალური გვერდი */
 .book-detail-wrapper {
     display: flex;
-    align-items: center; 
+    align-items: center; /* ასწორებს სურათს და ტექსტს ვერტიკალურ ცენტრში */
     gap: 50px;
     max-width: 1100px;
-    margin: 60px auto; 
+    margin: 60px auto;
     padding: 20px;
 }
 
@@ -211,7 +171,7 @@ body {
 }
 
 .book-content-column {
-    flex: 1.5; 
+    flex: 1.5; /* ვაძლევთ ტექსტს მეტ ადგილს */
 }
 
 .book-byline {
@@ -275,52 +235,12 @@ body {
     font-weight: bold;
 }
 
-/* --- რესპონსიულობა (მობილური, პლანშეტი, დესკტოპი) --- */
-
-/* მობილური (ეკრანები 768px-ზე მცირე) */
+/* --- რესპონსიულობა წიგნის გვერდისთვის --- */
 @media (max-width: 768px) {
-    body {
-        padding-top: 70px; 
-    }
-    .site-header {
-        padding: 1em 1.5em; 
-    }
-    .hero-title {
-        font-size: 3em; 
-    }
-    .hero-subtitle {
-        font-size: 1em; 
-    }
     .book-detail-wrapper {
-        flex-direction: column; 
+        flex-direction: column;
     }
     .book-content-column {
-        text-align: center; 
-    }
-    .book-main-title {
-        font-size: 2em; 
-    }
-    .purchase-box {
-        flex-direction: column; 
-        gap: 15px;
-    }
-}
-
-/* პლანშეტი (ეკრანები 769px-დან 1024px-მდე) */
-@media (min-width: 769px) and (max-width: 1024px) {
-    body {
-        padding-top: 75px; 
-    }
-    .site-header {
-        padding: 1.2em 2em; 
-    }
-    .hero-title {
-        font-size: 4em; 
-    }
-    .hero-subtitle {
-        font-size: 1.2em; 
-    }
-    .book-main-title {
-        font-size: 2.5em; 
+        text-align: center; /* ვაცენტრებთ ტექსტს და ღილაკს მობილურზე */
     }
 }
