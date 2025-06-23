@@ -327,7 +327,7 @@ body {
 
 .purchase-box {
     background-color: var(--light-bg-color);
-    border: 1px solid #e0e1dd;
+    border: 1px solid var(--border-color); /* Changed to use variable */
     border-radius: 8px;
     padding: 25px;
     display: flex;
@@ -365,20 +365,41 @@ body {
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
+/* New button for "Preview" on book detail page */
+.preview-button {
+    background-color: transparent; /* Use transparent background */
+    border: 2px solid var(--primary-color); /* Darker border */
+    color: var(--primary-color); /* Darker text */
+    padding: 14px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: block; /* Make it a block element to take full width if needed */
+    margin-top: 1.5em; /* Space above */
+    text-align: center; /* Center text inside */
+}
+.preview-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
 .back-to-catalog {
     display: block;
     margin-top: 2em;
     color: var(--secondary-color);
     text-decoration: none;
     font-weight: bold;
-    text-align: center; /* Center on mobile, but left on desktop if needed */
+    text-align: left; /* Default left-aligned */
     padding: 10px 0; /* Add padding for click area */
 }
 .back-to-catalog:hover {
     text-decoration: underline;
 }
 
-/* --- Book Preview Modal Styles (Remains the same as before, but included for completeness) --- */
+/* --- Book Preview Modal Styles --- */
 .modal {
     display: none; 
     position: fixed; 
@@ -544,8 +565,88 @@ body {
     transform: none;
 }
 
-/* მობილურისთვის */
+/* --- Responsive Design --- */
+/* Mobile (screens less than 768px) */
 @media (max-width: 768px) {
+    body {
+        padding-top: 70px; 
+    }
+    .site-header {
+        padding: 1em 1.5em; 
+    }
+    .hero-title {
+        font-size: 3em; 
+    }
+    .hero-subtitle {
+        font-size: 1em; 
+    }
+    
+    /* Book Detail Page Responsive */
+    .book-detail-wrapper {
+        flex-direction: column; 
+        align-items: center;
+        text-align: center; /* Center content horizontally */
+        margin-top: 30px; /* Adjust margin for mobile */
+        gap: 30px; /* Smaller gap on mobile */
+    }
+    .book-image-column {
+        flex: none; 
+        width: 100%; /* Take full width */
+        max-width: 250px; /* Max width for image on mobile */
+        margin-bottom: 0px; /* Reduced space below image */
+        padding-top: 0; /* Remove top padding */
+    }
+    .book-image-column img {
+        width: 100%;
+        max-width: 250px; 
+    }
+    .book-content-column {
+        flex: none; 
+        width: 100%; 
+        text-align: center; 
+        padding-left: 0; 
+        padding-top: 0; /* Remove top padding */
+    }
+    .book-byline {
+        font-size: 0.8em; /* Smaller byline */
+        margin-bottom: 0.2em;
+    }
+    .book-main-title {
+        font-size: 2em; 
+        text-align: center; 
+        margin-bottom: 0.8em;
+    }
+    .book-full-description p {
+        font-size: 1em;
+        line-height: 1.6;
+        margin-bottom: 0.8em;
+    }
+    .purchase-box {
+        flex-direction: column; 
+        gap: 15px;
+        align-items: center; 
+        width: 100%; 
+        padding: 20px; /* Adjust padding for mobile */
+        margin-top: 1.5em; /* Adjust margin */
+    }
+    .price-tag {
+        font-size: 1.8em; /* Smaller price tag */
+    }
+    .purchase-button {
+        width: 100%; 
+        max-width: 250px; 
+    }
+    .preview-button { /* Mobile adjustments for the new button */
+        width: 100%;
+        max-width: 250px;
+        margin-left: auto; /* Center button */
+        margin-right: auto;
+    }
+    .back-to-catalog {
+        text-align: center; 
+    }
+
+    /* Modal Responsive */
     .modal-content {
         padding: 20px;
         max-width: 95%;
@@ -560,5 +661,46 @@ body {
     }
     .modal-book-cover {
         width: 120px;
+    }
+}
+
+/* Tablet (screens between 769px and 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    body {
+        padding-top: 75px; 
+    }
+    .site-header {
+        padding: 1.2em 2em; 
+    }
+    .hero-title {
+        font-size: 4em; 
+    }
+    .hero-subtitle {
+        font-size: 1.2em; 
+    }
+    .book-main-title {
+        font-size: 2.5em; 
+    }
+    /* Tablet adjustments for book detail page layout */
+    .book-detail-wrapper {
+        flex-direction: column; /* Stack vertically on tablet too if needed */
+        align-items: center;
+        gap: 30px;
+    }
+    .book-image-column {
+        flex: none;
+        width: 80%; /* Adjust image column width */
+        max-width: 300px;
+    }
+    .book-content-column {
+        flex: none;
+        width: 90%; /* Adjust content column width */
+        text-align: center;
+    }
+    .book-main-title, .book-byline, .book-full-description {
+        text-align: center; /* Center text on tablets */
+    }
+    .purchase-box {
+        justify-content: center; /* Center elements in purchase box */
     }
 }
