@@ -63,13 +63,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- Book Data (ყველა წიგნის მონაცემი ერთ ადგილას) ---
-    // აქ შეგიძლიათ დაამატოთ თქვენი სხვა წიგნების მონაცემები
     const allBooksData = {
         'rogor-vimushaot-sakutar-tavze': {
             id: 'rogor-vimushaot-sakutar-tavze',
             title: 'როგორ ვიმუშაოთ საკუთარ თავზე',
             author: 'ანა მორჩილაძე',
-            cover: 'images/rogror_vimushaot.png', // ყდის სურათი
+            cover: 'images/rogror_vimushaot.png', 
             price: '12 ₾',
             description: `
                 <p>ეს არის გულწრფელი და პრაქტიკული სახელმძღვანელო ყველასთვის, ვისაც სურს შეწყვიტოს ერთ ადგილზე დგომა და დაიწყოს რეალური ზრდა. ის გასწავლით, თუ როგორ გადააქციოთ საკუთარი თავი თქვენი ცხოვრების მთავარ პროექტად.</p>
@@ -78,12 +77,8 @@ document.addEventListener('DOMContentLoaded', function() {
             pages: [
                 `<h3>წინასიტყვაობა</h3><p>ეს არის გულწრფელი და პრაქტიკული სახელმძღვანელო ყველასთვის, ვისაც სურს შეწყვიტოს ერთ ადგილზე დგომა და დაიწყოს რეალური ზრდა. ის გასწავლით, თუ როგორ გადააქციოთ საკუთარი თავი თქვენი ცხოვრების მთავარ პროექტად.</p><p>დამატებითი ტექსტი წინასიტყვაობიდან, რომელიც განმარტავს წიგნის მნიშვნელობას და მის სარგებელს მკითხველისთვის. წინასიტყვაობა ხშირად შეიცავს ავტორის პირად ხედვას ან წიგნის შექმნის ისტორიას.</p>`,
                 `<h3>თავი 1: გაცნობა</h3><p>ეს არის წიგნის პირველი გვერდის ამონარიდი. აქ დაიწყება ძირითადი თხრობა ან თემის განხილვა. მკითხველი გაეცნობა პირველ კონცეფციებს ან პერსონაჟებს, რომლებიც წიგნში გამოჩნდება.</p><p>დამატებითი ტექსტი პირველი თავიდან, რომელიც ავითარებს საწყის იდეებს და ნელ-ნელა ჩაითრევს მკითხველს წიგნის სამყაროში. გვერდების გადაფურცვლის ანიმაცია აქტიურდება.</p>`,
-                // შეგიძლიათ დაამატოთ მეტი გვერდი აქ:
-                // `<h3>თავი 1: გვერდი 2</h3><p>კიდევ ერთი გვერდის ტექსტი...</p>`,
-                // `<h3>დასკვნა</h3><p>მოკლე დასკვნა ან ეპილოგი...</p>`
             ]
         },
-        // აქ შეგიძლიათ დაამატოთ სხვა წიგნები:
         'sxva-cigni': {
             id: 'sxva-cigni',
             title: 'სხვა წიგნი - მაგალითი',
@@ -207,7 +202,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (openPreviewModalBtn && bookPreviewModal) { // ვამოწმებთ, რომ ღილაკი და მოდალი არსებობს
         openPreviewModalBtn.addEventListener('click', function(e) {
             e.preventDefault(); 
-            openBookPreview('rogor-vimushaot-sakutar-tavze'); // გადავცემთ წიგნის ID-ს
+            // ვარჩევთ წიგნის ID-ს URL-დან, რომ ამ გვერდზე სწორი წიგნი გაიხსნას მოდალში
+            const urlParams = new URLSearchParams(window.location.search);
+            const bookId = urlParams.get('bookid') || 'rogor-vimushaot-sakutar-tavze'; 
+            openBookPreview(bookId); 
         });
     }
 
@@ -222,8 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
             for (const bookId in allBooksData) {
                 const book = allBooksData[bookId];
 
-                // ვაშენებთ HTML-ს თითოეული წიგნისთვის
-                // ეს HTML არის "ბარათის" სტილის, როგორც index.html-ზე
+                // ვაშენებთ HTML-ს თითოეული წიგნისთვის (ბარათის სახით)
                 const bookCardHtml = `
                     <a href="rogor-vimushaot-sakutar-tavze.html?bookid=${book.id}" class="book-card-link book-list-card" data-aos="fade-up">
                         <div class="book-card">
@@ -245,10 +242,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // --- rogor-vimushaot-sakutar-tavze.html გვერდის კონტენტის დინამიური ჩატვირთვა ---
+    // ეს ლოგიკა უზრუნველყოფს, რომ rogor-vimushaot-sakutar-tavze.html-ზე სწორი წიგნის დეტალები გამოჩნდეს
+    // იმის მიხედვით, თუ რომელი წიგნიდან მოვხვდით ამ გვერდზე (URL პარამეტრით).
     const bookDetailPageWrapper = document.querySelector('.book-detail-wrapper');
     if (bookDetailPageWrapper && window.location.pathname.includes('rogor-vimushaot-sakutar-tavze.html')) {
         const urlParams = new URLSearchParams(window.location.search);
-        const bookId = urlParams.get('bookid') || 'rogor-vimushaot-sakutar-tavze'; // თუ bookid არ არის, ნაგულისხმევად აჩვენებს "როგორ ვიმუშაოთ საკუთარ თავზე"
+        const bookId = urlParams.get('bookid') || 'rogor-vimushaot-sakutar-tavze'; // თუ bookid არ არის URL-ში, ნაგულისხმევად აჩვენებს "როგორ ვიმუშაოთ საკუთარ თავზე"
 
         const book = allBooksData[bookId];
         if (book) {
@@ -282,21 +281,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         } else {
+            // თუ წიგნი ვერ მოიძებნა, ვაჩვენებთ შეტყობინებას
             bookDetailPageWrapper.innerHTML = `<h2 class="content-title">წიგნი ვერ მოიძებნა.</h2><p style="text-align: center;">გთხოვთ, დაბრუნდით <a href="books.html">წიგნების სიაში</a>.</p>`;
         }
     }
 
 
     // --- გვერდების ჩატვირთვის კონტროლი ---
+    // ვამოწმებთ, რომელ გვერდზე ვართ და შესაბამის ფუნქციას ვიძახებთ
     const currentPagePath = window.location.pathname;
 
-    if (currentPagePath.includes('books.html')) {
+    if (currentPagePath.includes('books.html')) { // თუ books.html-ზე ვართ
         loadBooksPage();
     } 
-    // თუ rogor-vimushaot-sakutar-tavze.html გვერდზე ვართ, კონტენტი უკვე ზემოთ ჩაიტვირთება
-    // ამიტომ აქ აღარ გვჭირდება loadBooksPage().
-    // else if (currentPagePath.includes('rogor-vimushaot-sakutar-tavze.html')) {
-    //     // content already handled by specific logic above
-    // }
+    // rogor-vimushaot-sakutar-tavze.html გვერდის კონტენტი უკვე ზემოთ handled.
 
 }); // DOMContentLoaded end
