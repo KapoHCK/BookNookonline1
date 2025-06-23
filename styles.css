@@ -408,7 +408,7 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto; 
+    overflow: hidden; /* Changed to hidden to manage scroll within modal-body */
     background-color: rgba(0,0,0,0.7); 
     justify-content: center; 
     align-items: center; 
@@ -431,6 +431,9 @@ body {
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     animation: scaleIn 0.3s ease-out; 
     box-sizing: border-box;
+    display: flex; /* Changed to flex */
+    flex-direction: column; /* Stack content vertically */
+    max-height: 90vh; /* Allow modal to take more height if needed */
 }
 
 @keyframes scaleIn {
@@ -457,16 +460,17 @@ body {
 
 .modal-body {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Ensure vertical stacking */
     gap: 20px;
-    max-height: 80vh; 
-    overflow-y: auto; 
-    padding-right: 10px; 
+    flex-grow: 1; /* Allow modal body to fill available space */
+    min-height: 0; /* Important for flex items with overflow */
+    overflow-y: auto; /* Scroll only modal body content */
+    padding-right: 10px; /* Space for scrollbar */
 }
 
 .book-preview-header {
     display: flex;
-    align-items: flex-start;
+    align-items: flex-start; /* Align header items to start */
     gap: 20px;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 20px;
@@ -474,7 +478,7 @@ body {
 }
 
 .modal-book-cover {
-    width: 150px; 
+    width: 120px; /* Reduced cover size in modal header */
     height: auto;
     border-radius: 4px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -487,25 +491,27 @@ body {
 
 .modal-book-title {
     font-family: 'Playfair Display', serif;
-    font-size: 2.2em;
+    font-size: 2em; /* Slightly reduced font size for modal title */
     margin: 0 0 5px 0;
     color: var(--primary-color);
 }
 
 .modal-book-author {
-    font-size: 1em;
+    font-size: 0.9em; /* Slightly reduced font size for modal author */
     color: var(--secondary-color);
     margin: 0;
 }
 
 .book-preview-pages {
     position: relative; 
-    min-height: 200px; 
+    min-height: 150px; /* Reduced min-height, flex-grow will handle */
+    flex-grow: 1; /* Allow pages to fill available space in modal body */
+    overflow-y: hidden; /* Hide overflow by default for pages */
 }
 
 .page-content {
     display: none; 
-    padding: 10px 0;
+    padding: 5px 0; /* Reduced padding */
     line-height: 1.8;
 }
 
@@ -530,9 +536,12 @@ body {
 
 .page-content h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.5em;
+    font-size: 1.4em; /* Slightly reduced page header font size */
     margin-top: 0;
     color: var(--text-color);
+}
+.page-content p {
+    font-size: 1em; /* Adjusted paragraph font size */
 }
 
 .page-navigation {
@@ -541,6 +550,7 @@ body {
     align-items: center;
     gap: 15px;
     margin-top: 20px;
+    flex-shrink: 0; /* Prevents navigation from shrinking */
 }
 
 .nav-button {
@@ -646,21 +656,57 @@ body {
         text-align: center; 
     }
 
-    /* Modal Responsive */
+    /* --- Modal Responsive (Mobile Specific Fixes) --- */
     .modal-content {
-        padding: 20px;
-        max-width: 95%;
+        padding: 15px; /* Reduced padding for more content space */
+        max-width: 95%; /* Allow it to take almost full width */
+        max-height: 95vh; /* Maximize modal height on small screens */
     }
     .modal-book-title {
-        font-size: 1.8em;
+        font-size: 1.5em; /* Further reduce title size */
+    }
+    .modal-book-author {
+        font-size: 0.8em; /* Further reduce author size */
     }
     .book-preview-header {
-        flex-direction: column;
+        flex-direction: column; /* Stack image and info vertically */
         align-items: center;
         text-align: center;
+        gap: 10px; /* Reduced gap */
+        padding-bottom: 15px; /* Adjusted padding */
+        margin-bottom: 15px; /* Adjusted margin */
     }
     .modal-book-cover {
-        width: 120px;
+        width: 100px; /* Smaller cover image */
+    }
+    .modal-body {
+        padding-right: 0; /* Remove padding right for scrollbar on small screens if it causes issues */
+        gap: 10px; /* Reduced gap */
+    }
+    .page-content {
+        padding: 5px 0; /* Ensure internal page content has minimal padding */
+    }
+    .page-content h3 {
+        font-size: 1.2em; /* Smaller page heading */
+    }
+    .page-content p {
+        font-size: 0.9em; /* Smaller paragraph text */
+    }
+    .page-navigation {
+        margin-top: 15px; /* Adjust margin */
+        padding: 5px 0; /* Add small padding */
+        background-color: var(--bg-color); /* Add background to avoid text overlap */
+        position: sticky; /* Make it sticky to the bottom of the scrollable area */
+        bottom: 0;
+        z-index: 10; /* Ensure it's above page content when scrolling */
+        border-top: 1px solid var(--border-color); /* Add a subtle border */
+    }
+    .nav-button {
+        padding: 8px 12px; /* Smaller button padding */
+        font-size: 1em; /* Smaller button font size */
+    }
+    #pageCounter {
+        font-size: 0.9em; /* Smaller page counter */
     }
 }
 
@@ -683,24 +729,44 @@ body {
     }
     /* Tablet adjustments for book detail page layout */
     .book-detail-wrapper {
-        flex-direction: column; /* Stack vertically on tablet too if needed */
-        align-items: center;
-        gap: 30px;
+        flex-direction: row; /* Keep it row-based for tablets, maybe adjust gap */
+        align-items: flex-start;
+        gap: 40px; /* Slightly less gap */
     }
     .book-image-column {
-        flex: none;
-        width: 80%; /* Adjust image column width */
+        flex: 0 0 300px; /* Adjusted image column width */
+        max-width: 100%;
+    }
+    .book-image-column img {
+        width: 100%;
         max-width: 300px;
     }
     .book-content-column {
-        flex: none;
-        width: 90%; /* Adjust content column width */
-        text-align: center;
+        flex: 1;
+        min-width: auto; /* Remove min-width constraint */
+        text-align: left; /* Default text alignment */
     }
-    .book-main-title, .book-byline, .book-full-description {
-        text-align: center; /* Center text on tablets */
+    .book-main-title, .book-byline {
+        text-align: left; /* Align text left */
     }
     .purchase-box {
-        justify-content: center; /* Center elements in purchase box */
+        justify-content: flex-start; /* Align purchase box items to start */
+    }
+    .preview-button, .back-to-catalog {
+        margin-left: 0; /* Remove auto margins to align left */
+        margin-right: 0;
+        text-align: left;
+    }
+    
+    /* Modal Tablet Adjustments */
+    .modal-content {
+        max-width: 700px; /* Adjust max width for tablet modal */
+        padding: 25px;
+    }
+    .modal-book-title {
+        font-size: 1.8em;
+    }
+    .modal-book-author {
+        font-size: 0.9em;
     }
 }
