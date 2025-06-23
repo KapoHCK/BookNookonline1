@@ -152,15 +152,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     } // End if (bookPreviewModal) check
 
-    // --- 4. წიგნის ბარათებზე დაკლიკების ლოგიკა (index.html-ზე) ---
-    // აქ bookCardLinks-ზე არ ვაყენებთ e.preventDefault()-ს, რადგან გვინდა გვერდზე გადასვლა.
-    // HTML-ში href="rogor-vimushaot-sakutar-tavze.html" უნდა იყოს.
-    const bookCardLinks = document.querySelectorAll('.book-card-link');
-    bookCardLinks.forEach(link => {
-        // No specific JavaScript click handler here for opening modal on index.html
-        // The HTML href handles navigation.
-    });
-
 
     // --- 5. "ამონარიდის ნახვა" ღილაკის ლოგიკა (rogor-vimushaot-sakutar-tavze.html-ზე) ---
     const openPreviewModalBtn = document.getElementById('openPreviewModalBtn');
