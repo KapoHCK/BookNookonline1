@@ -1,10 +1,10 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ka">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BookNook - შენი ციფრული ბიბლიოთეკა</title>
-    <link rel="icon" href="/booknook_logo.ico" type="image/x-icon">
+    <link rel="icon" href="booknook_logo.ico" type="image/x-icon">
     <meta name="description" content="BookNook არის ონლაინ სივრცე, სადაც თავმოყრილია წიგნები ფსიქოლოგიასა და პიროვნულ ზრდაზე. აღმოაჩინე შენი შემდეგი წიგნი.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,6 +59,36 @@
     
     <a href="#" id="back-to-top" class="back-to-top-button">&#8593;</a>
 
+    <div id="bookPreviewModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div class="modal-body">
+                <div class="book-preview-header">
+                    <img id="modalBookCover" src="" alt="წიგნის ყდა" class="modal-book-cover">
+                    <div class="book-preview-info">
+                        <h2 id="modalBookTitle" class="modal-book-title"></h2>
+                        <p id="modalBookAuthor" class="modal-book-author"></p>
+                    </div>
+                </div>
+                <div class="book-preview-pages">
+                    <div class="page-content active-page" id="modal-page-1">
+                        <h3>წინასიტყვაობა</h3>
+                        <p>ეს არის პირველი აბზაცი, რომელიც მკითხველს აცნობს წიგნის თემასა და ავტორის მიზნებს.</p>
+                    </div>
+                    <div class="page-content" id="modal-page-2">
+                        <h3>თავი 1: გაცნობა</h3>
+                        <p>აქ დაიწყება ძირითადი თხრობა ან თემის განხილვა.</p>
+                    </div>
+                </div>
+                <div class="page-navigation">
+                    <button id="prevPageBtn" class="nav-button">&lt;</button>
+                    <span id="pageCounter">1 / 2</span>
+                    <button id="nextPageBtn" class="nav-button">&gt;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
     <script>
@@ -66,4 +96,3 @@
     </script>
 </body>
 </html>
-```
