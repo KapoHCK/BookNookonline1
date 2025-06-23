@@ -84,19 +84,18 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         // აქ შეგიძლიათ დაამატოთ სხვა წიგნები:
-        /*
         'sxva-cigni': {
             id: 'sxva-cigni',
-            title: 'სხვა წიგნი',
+            title: 'სხვა წიგნი - მაგალითი',
             author: 'სხვა ავტორი',
-            cover: 'images/sxva_cignis_yda.png',
+            cover: 'images/rogror_vimushaot.png', // შეგიძლიათ შეცვალოთ სხვა სურათით
             price: '15 ₾',
-            description: `<p>ამ წიგნის აღწერა.</p>`,
+            description: `<p>ეს არის მეორე წიგნის აღწერა. ის ასევე დაგეხმარებათ პიროვნულ განვითარებაში.</p><p>წაიკითხეთ ამონარიდი, რათა გაიგოთ მეტი.</p>`,
             pages: [
-                `<h3>ამონარიდი</h3><p>ტექსტი...</p>`
+                `<h3>ახალი წიგნის შესავალი</h3><p>ეს არის ახალი წიგნის შესავალი გვერდი.</p>`,
+                `<h3>თავი 2: ძირითადი იდეები</h3><p>ეს არის მეორე წიგნის პირველი თავის ამონარიდი.</p>`
             ]
         }
-        */
     };
 
 
@@ -134,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
             currentBookPages.forEach((pageText, index) => {
                 const pageDiv = document.createElement('div');
                 pageDiv.classList.add('page-content');
-                pageDiv.id = `modal-page-${index + 1}`; // ID changed for clarity and consistency
+                pageDiv.id = `modal-page-${index + 1}`; 
                 pageDiv.innerHTML = pageText; 
                 bookPreviewPagesContainer.appendChild(pageDiv);
             });
@@ -224,49 +223,80 @@ document.addEventListener('DOMContentLoaded', function() {
                 const book = allBooksData[bookId];
 
                 // ვაშენებთ HTML-ს თითოეული წიგნისთვის
-                const bookDetailHtml = `
-                    <div class="book-detail-wrapper books-list-item">
-                        <div class="book-image-column">
-                            <img src="${book.cover}" alt="${book.title}">
+                // ეს HTML არის "ბარათის" სტილის, როგორც index.html-ზე
+                const bookCardHtml = `
+                    <a href="rogor-vimushaot-sakutar-tavze.html?bookid=${book.id}" class="book-card-link book-list-card" data-aos="fade-up">
+                        <div class="book-card">
+                            <img src="${book.cover}" alt="${book.title}" class="book-cover">
+                            <div class="book-info">
+                                <h3 class="book-title">${book.title}</h3>
+                                <p class="book-author">${book.author}</p>
+                            </div>
                         </div>
-                        <div class="book-content-column">
-                            <p class="book-byline">${book.author}</p>
-                            <h1 class="book-main-title">${book.title}</h1>
-                            <div class="book-full-description">
-                                ${book.description}
-                            </div>
-                            
-                            <div class="purchase-box">
-                                <div class="price-tag">${book.price}</div>
-                                <a href="https://www.facebook.com/profile.php?id=61562893725953" class="purchase-button" target="_blank">Facebook-ზე დაკავშირება</a>
-                            </div>
-
-                            <button id="open-preview-${book.id}" class="hero-button preview-button" data-book-id="${book.id}">ამონარიდის ნახვა</button>
-                            </div>
-                    </div>
+                    </a>
                 `;
-                booksListPage.innerHTML += bookDetailHtml;
+                booksListPage.innerHTML += bookCardHtml;
             }
+            // AOS-ის ხელახალი ინიციალიზაცია ახალი ელემენტებისთვის, თუ გამოიყენება
+            if (typeof AOS !== 'undefined') {
+                AOS.refreshHard(); 
+            }
+        }
+    }
+    
+    // --- rogor-vimushaot-sakutar-tavze.html გვერდის კონტენტის დინამიური ჩატვირთვა ---
+    const bookDetailPageWrapper = document.querySelector('.book-detail-wrapper');
+    if (bookDetailPageWrapper && window.location.pathname.includes('rogor-vimushaot-sakutar-tavze.html')) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const bookId = urlParams.get('bookid') || 'rogor-vimushaot-sakutar-tavze'; // თუ bookid არ არის, ნაგულისხმევად აჩვენებს "როგორ ვიმუშაოთ საკუთარ თავზე"
 
-            // ახლა, როცა ყველა წიგნი ჩაიტვირთა, დავამატოთ კლიკის დამმუშავებლები
-            const previewButtons = document.querySelectorAll('.books-list-item .preview-button');
-            previewButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const bookIdToOpen = this.dataset.bookId; // ვიღებთ bookId-ს data-book-id ატრიბუტიდან
-                    openBookPreview(bookIdToOpen);
+        const book = allBooksData[bookId];
+        if (book) {
+            bookDetailPageWrapper.innerHTML = `
+                <div class="book-image-column">
+                    <img src="${book.cover}" alt="${book.title}">
+                </div>
+                <div class="book-content-column">
+                    <p class="book-byline">${book.author}</p>
+                    <h1 class="book-main-title">${book.title}</h1>
+                    <div class="book-full-description">
+                        ${book.description}
+                    </div>
+                    
+                    <div class="purchase-box">
+                        <div class="price-tag">${book.price}</div>
+                        <a href="https://www.facebook.com/profile.php?id=61562893725953" class="purchase-button" target="_blank">Facebook-ზე დაკავშირება</a>
+                    </div>
+
+                    <button id="openPreviewModalBtn" class="hero-button preview-button" data-book-id="${book.id}">ამონარიდის ნახვა</button>
+
+                    <a href="index.html" class="back-to-catalog">← კატალოგში დაბრუნება</a> 
+                </div>
+            `;
+            // ხელახლა ვეძებთ ღილაკს დინამიურად ჩატვირთვის შემდეგ
+            const dynamicallyLoadedOpenPreviewModalBtn = document.getElementById('openPreviewModalBtn');
+            if (dynamicallyLoadedOpenPreviewModalBtn && bookPreviewModal) {
+                dynamicallyLoadedOpenPreviewModalBtn.addEventListener('click', function(e) {
+                    e.preventDefault(); 
+                    openBookPreview(this.dataset.bookId); // ვიყენებთ data-book-id-ს
                 });
-            });
+            }
+        } else {
+            bookDetailPageWrapper.innerHTML = `<h2 class="content-title">წიგნი ვერ მოიძებნა.</h2><p style="text-align: center;">გთხოვთ, დაბრუნდით <a href="books.html">წიგნების სიაში</a>.</p>`;
         }
     }
 
-    // ვამოწმებთ, რომელ გვერდზე ვართ და შესაბამის ფუნქციას ვიძახებთ
+
+    // --- გვერდების ჩატვირთვის კონტროლი ---
     const currentPagePath = window.location.pathname;
-    if (currentPagePath.includes('books.html') || currentPagePath.endsWith('/books')) { // დაემატა /books შემოწმება
+
+    if (currentPagePath.includes('books.html')) {
         loadBooksPage();
-    }
-    // Note: If you add more book detail pages like "rogor-vimushaot-sakutar-tavze.html",
-    // you will need to ensure their data is also in allBooksData and their "preview-button"
-    // correctly calls openBookPreview with the right ID.
+    } 
+    // თუ rogor-vimushaot-sakutar-tavze.html გვერდზე ვართ, კონტენტი უკვე ზემოთ ჩაიტვირთება
+    // ამიტომ აქ აღარ გვჭირდება loadBooksPage().
+    // else if (currentPagePath.includes('rogor-vimushaot-sakutar-tavze.html')) {
+    //     // content already handled by specific logic above
+    // }
 
 }); // DOMContentLoaded end
