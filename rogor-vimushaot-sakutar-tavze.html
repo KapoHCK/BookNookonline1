@@ -1,39 +1,55 @@
 <!DOCTYPE html>
 <html lang="ka">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>წიგნები - BookNook</title>
-    <link rel="icon" href="booknook_logo.ico" type="image/x-icon">
-    <meta name="description" content="BookNook-ის ყველა წიგნი ერთ ადგილას. აღმოაჩინე ახალი წიგნები ფსიქოლოგიასა და პიროვნულ ზრდაზე.">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Manrope:wght@300;400;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>როგორ ვიმუშაოთ საკუთარ თავზე - BookNook</title>
+<link rel="icon" href="booknook_logo.ico" type="image/x-icon">
+<meta name="description" content="შეიძინეთ წიგნი 'როგორ ვიმუშაოთ საკუთარ თავზე'. ეს არის პრაქტიკული სახელმძღვანელო ყველასთვის, ვისაც სურს რეალური ზრდა ისწავლე როგორ ვიმუშაოთ საკუთარ თავზე. წიგნი განკუთვნილია მათთვის, ვისაც აინტერესებს ფსიქოლოგია, პიროვნული განვითარება და სურს, რომ გაძლიერდეს.">
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Manrope:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="site-wrapper" class="visible">
-        <header class="site-header">
-            <a href="index.html" class="logo-link"><img src="images/booknook_logo.png" alt="BookNook ლოგო" class="logo"></a>
-            <nav class="main-nav">
-                <a href="index.html">მთავარი</a>
-                <a href="books.html">წიგნები</a>
-                <a href="about.html">ჩვენს შესახებ</a>
-                <a href="contact.html">კონტაქტი</a>
-            </nav>
-        </header>
+<div id="site-wrapper" class="visible">
+<header class="site-header">
+<a href="index.html" class="logo-link"><img src="images/booknook_logo.png" alt="BookNook ლოგო" class="logo"></a>
+<nav class="main-nav">
+<a href="index.html">მთავარი</a>
+<a href="books.html">წიგნები</a>
+<a href="about.html">ჩვენს შესახებ</a>
+<a href="contact.html">კონტაქტი</a>
+</nav>
+</header>
 
-        <main class="content-container">
-            <h2 class="content-title">ჩვენი წიგნები</h2>
-            <div id="books-list" class="book-list-grid">
+        <main class="book-detail-wrapper"> 
+            <div class="book-image-column">
+                <img src="images/rogror_vimushaot.png" alt="როგორ ვიმუშაოთ საკუთარ თავზე">
+            </div>
+            <div class="book-content-column">
+                <p class="book-byline">ანა მორჩილაძე</p>
+                <h1 class="book-main-title">როგორ ვიმუშაოთ საკუთარ თავზე</h1>
+                <div class="book-full-description">
+                    <p>ეს არის გულწრფელი და პრაქტიკული სახელმძღვანელო ყველასთვის, ვისაც სურს შეწყვიტოს ერთ ადგილზე დგომა და დაიწყოს რეალური ზრდა. ის გასწავლით, თუ როგორ გადააქციოთ საკუთარი თავი თქვენი ცხოვრების მთავარ პროექტად.</p>
+                    <p>თქვენ შეისწავლით მეთოდებს, რომლებიც დაგეხმარებათ ააშენოთ თავდაჯერებულობა, გაიმყაროთ ნებისყოფა და მოიპოვოთ კონტროლი საკუთარ ბედზე.</p>
                 </div>
+                
+                <div class="purchase-box">
+                    <div class="price-tag">12 ₾</div>
+                    <a href="https://www.facebook.com/profile.php?id=61562893725953" class="purchase-button" target="_blank">Facebook-ზე დაკავშირება</a>
+                </div>
+
+                <button id="openPreviewModalBtn" class="hero-button preview-button">ამონარიდის ნახვა</button>
+
+                <a href="index.html" class="back-to-catalog">← კატალოგში დაბრუნება</a> 
+            </div>
         </main>
 
         <footer class="site-footer">
             <p>&copy; 2025 BookNook. ყველა უფლება დაცულია.</p>
         </footer>
     </div>
-    
     <a href="#" id="back-to-top" class="back-to-top-button">&#8593;</a>
 
     <div id="bookPreviewModal" class="modal">
@@ -48,7 +64,15 @@
                     </div>
                 </div>
                 <div class="book-preview-pages">
+                    <div class="page-content active-page" id="modal-page-1">
+                        <h3>წინასიტყვაობა</h3>
+                        <p>ეს არის პირველი აბზაცი, რომელიც მკითხველს აცნობს წიგნის თემასა და ავტორის მიზნებს.</p>
                     </div>
+                    <div class="page-content" id="modal-page-2">
+                        <h3>თავი 1: გაცნობა</h3>
+                        <p>აქ დაიწყება ძირითადი თხრობა ან თემის განხილვა.</p>
+                    </div>
+                </div>
                 <div class="page-navigation">
                     <button id="prevPageBtn" class="nav-button">&lt;</button>
                     <span id="pageCounter">1 / 2</span>
