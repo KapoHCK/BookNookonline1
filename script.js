@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('load', function() {
             const endTime = Date.now();
             const elapsedTime = endTime - startTime;
-            // დარწმუნდით, რომ remainingTime არ არის უარყოფითი
+            // დარწმუნდით, რომ remainingTime არ არის უარყოფითი და სწორად ითვლება
             const delay = Math.max(0, minDisplayTime - elapsedTime); 
 
             setTimeout(function() {
@@ -135,17 +135,14 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = ''; // გვერდის სქროლვის აღდგენა
         }
 
-        // ღილაკზე დახურვა
         closeModalButton.addEventListener('click', closeBookPreview);
 
-        // მოდალის გარეთ დაკლიკებით დახურვა
         window.addEventListener('click', function(event) {
             if (event.target === bookPreviewModal) {
                 closeBookPreview();
             }
         });
 
-        // გვერდებს შორის ნავიგაცია
         prevPageBtn.addEventListener('click', function() {
             if (currentPage > 0) {
                 currentPage--;
@@ -161,10 +158,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // --- 4. წიგნის ბარათებზე დაკლიკების ლოგიკა ---
-        // ეს არის მაგალითი! თქვენ დაგჭირდებათ მეტი bookData ობიექტი
-        // თითოეული წიგნისთვის.
-
-        // ვპოულობთ ყველა წიგნის ბარათს
         const bookCardLinks = document.querySelectorAll('.book-card-link');
 
         // მაგალითი: წიგნის მონაცემები (ეს უნდა მოიტანოთ სერვერიდან ან JSON ფაილიდან რეალურ პროექტში)
