@@ -19,20 +19,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (sessionStorage.getItem('preloaderShown')) {
-        // თუ უკვე ნანახი გვაქვს ამ სესიაში, მაშინვე ვმალავთ
         if (preloader) preloader.style.display = 'none';
         if (siteWrapper) siteWrapper.classList.add('visible');
     } else {
-        // თუ პირველად ვხსნით, ვიწყებთ ჩატვირთვის პროცესს
         window.addEventListener('load', function() {
             const endTime = Date.now();
             const elapsedTime = endTime - startTime;
-            // დარწმუნდით, რომ remainingTime არ არის უარყოფითი და სწორად ითვლება
             const delay = Math.max(0, minDisplayTime - elapsedTime); 
 
             setTimeout(function() {
                 hidePreloader();
-                // ვიმახსოვრებთ, რომ ამ სესიაში Preloader-ი უკვე ვაჩვენეთ
                 sessionStorage.setItem('preloaderShown', 'true');
             }, delay);
         });
@@ -44,13 +40,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if(header && backToTopButton) {
         window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) { // 50px-ზე მეტი სქროლისას
+            if (window.scrollY > 50) { 
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
 
-            if (window.scrollY > 300) { // 300px-ზე მეტი სქროლისას
+            if (window.scrollY > 300) { 
                 backToTopButton.classList.add('active');
             } else {
                 backToTopButton.classList.remove('active');
@@ -58,17 +54,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         backToTopButton.addEventListener('click', function(e) {
-            e.preventDefault(); // ბმულის ნაგულისხმევი ქცევის გაუქმება
+            e.preventDefault(); 
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth' // რბილი სქროლირება
+                behavior: 'smooth' 
             });
         });
     }
 
     // --- 3. Book Preview Modal ლოგიკა ---
     const bookPreviewModal = document.getElementById('bookPreviewModal');
-    // შეამოწმეთ არსებობს თუ არა მოდალი, სანამ მის ელემენტებს ვეძებთ
+    let currentPage = 0;
+    let totalPages = 0;
+    let currentBookPages = []; 
+
+    // თუ მოდალი HTML-ში არსებობს (რადგან ის rogor-vimushaot-sakutar-tavze.html-ზე გვჭირდება)
     if (bookPreviewModal) { 
         const closeModalButton = bookPreviewModal.querySelector('.close-button');
         const modalBookCover = document.getElementById('modalBookCover');
@@ -78,9 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const prevPageBtn = document.getElementById('prevPageBtn');
         const nextPageBtn = document.getElementById('nextPageBtn');
         const pageCounter = document.getElementById('pageCounter');
-        let currentPage = 0;
-        let totalPages = 0;
-        let currentBookPages = []; 
 
         // ფუნქცია, რომელიც აჩვენებს მოდალს
         function openBookPreview(bookData) {
@@ -95,17 +92,16 @@ document.addEventListener('DOMContentLoaded', function() {
             currentBookPages.forEach((pageText, index) => {
                 const pageDiv = document.createElement('div');
                 pageDiv.classList.add('page-content');
-                pageDiv.id = `page${index + 1}`;
-                pageDiv.innerHTML = pageText; // გვერდის HTML კონტენტი
-
+                pageDiv.id = `modal-page-${index + 1}`; // ID changed for clarity and consistency
+                pageDiv.innerHTML = pageText; 
                 bookPreviewPagesContainer.appendChild(pageDiv);
             });
 
-            currentPage = 0; // ვიწყებთ პირველი გვერდიდან
+            currentPage = 0; 
             showPage(currentPage);
 
-            bookPreviewModal.classList.add('active'); // მოდალის გამოჩენა
-            document.body.style.overflow = 'hidden'; // გვერდის სქროლვის დაბლოკვა
+            bookPreviewModal.classList.add('active'); 
+            document.body.style.overflow = 'hidden'; 
         }
 
         // ფუნქცია, რომელიც აჩვენებს კონკრეტულ გვერდს
@@ -113,17 +109,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const pages = bookPreviewPagesContainer.querySelectorAll('.page-content');
             pages.forEach((page, i) => {
                 page.classList.remove('active-page');
-                // ანიმაციის წაშლა ყოველი გვერდის შეცვლაზე
                 page.style.animation = 'none';
-                page.offsetHeight; // force reflow for animation restart
+                page.offsetHeight; 
             });
 
             if (pages[index]) {
                 pages[index].classList.add('active-page');
-                pages[index].style.animation = 'pageFlipIn 0.5s ease-out'; // ანიმაციის ხელახლა დამატება
+                pages[index].style.animation = 'pageFlipIn 0.5s ease-out'; 
             }
             
-            // ღილაკების აქტივაცია/დეაქტივაცია
             prevPageBtn.disabled = index === 0;
             nextPageBtn.disabled = index === totalPages - 1;
             pageCounter.textContent = `${index + 1} / ${totalPages}`;
@@ -131,8 +125,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // ფუნქცია, რომელიც ხურავს მოდალს
         function closeBookPreview() {
-            bookPreviewModal.classList.remove('active'); // მოდალის დამალვა
-            document.body.style.overflow = ''; // გვერდის სქროლვის აღდგენა
+            bookPreviewModal.classList.remove('active'); 
+            document.body.style.overflow = ''; 
         }
 
         closeModalButton.addEventListener('click', closeBookPreview);
@@ -156,12 +150,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 showPage(currentPage);
             }
         });
+    } // End if (bookPreviewModal) check
 
-        // --- 4. წიგნის ბარათებზე დაკლიკების ლოგიკა ---
-        const bookCardLinks = document.querySelectorAll('.book-card-link');
+    // --- 4. წიგნის ბარათებზე დაკლიკების ლოგიკა (index.html-ზე) ---
+    // აქ bookCardLinks-ზე არ ვაყენებთ e.preventDefault()-ს, რადგან გვინდა გვერდზე გადასვლა.
+    // HTML-ში href="rogor-vimushaot-sakutar-tavze.html" უნდა იყოს.
+    const bookCardLinks = document.querySelectorAll('.book-card-link');
+    bookCardLinks.forEach(link => {
+        // No specific JavaScript click handler here for opening modal on index.html
+        // The HTML href handles navigation.
+    });
 
-        // მაგალითი: წიგნის მონაცემები (ეს უნდა მოიტანოთ სერვერიდან ან JSON ფაილიდან რეალურ პროექტში)
-        const bookDataExample = {
+
+    // --- 5. "ამონარიდის ნახვა" ღილაკის ლოგიკა (rogor-vimushaot-sakutar-tavze.html-ზე) ---
+    const openPreviewModalBtn = document.getElementById('openPreviewModalBtn');
+
+    if (openPreviewModalBtn && bookPreviewModal) { // ვამოწმებთ, რომ ღილაკი და მოდალი არსებობს
+        // ეს bookDataForThisPage ობიექტი უნდა შეავსოთ კონკრეტული წიგნის მონაცემებით.
+        // ამ მაგალითისთვის ვიყენებთ "როგორ ვიმუშაოთ საკუთარ თავზე" მონაცემებს.
+        const bookDataForThisPage = {
             title: 'როგორ ვიმუშაოთ საკუთარ თავზე',
             author: 'ანა მორჩილაძე',
             cover: 'images/rogror_vimushaot.png', // ყდის სურათი
@@ -176,15 +183,10 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         };
 
-        bookCardLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault(); // არ გადახვიდეს rogor-vimushaot-sakutar-tavze.html გვერდზე
-                
-                // ამ წიგნის მონაცემები აქ უნდა იყოს რეალურად დინამიურად მოტანილი
-                // (მაგ. data-attributes-დან ან ობიექტიდან ID-ით)
-                // ამ მაგალითისთვის პირდაპირ bookDataExample-ს ვიყენებ
-                openBookPreview(bookDataExample);
-            });
+        openPreviewModalBtn.addEventListener('click', function(e) {
+            e.preventDefault(); 
+            openBookPreview(bookDataForThisPage);
         });
-    } // End if (bookPreviewModal) check
+    }
+
 }); // DOMContentLoaded end
