@@ -223,6 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
             for (const bookId in allBooksData) {
                 const book = allBooksData[bookId];
 
+                // ვაშენებთ HTML-ს თითოეული წიგნისთვის
                 const bookDetailHtml = `
                     <div class="book-detail-wrapper books-list-item">
                         <div class="book-image-column">
