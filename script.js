@@ -224,7 +224,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const book = allBooksData[bookId];
 
                 const bookDetailHtml = `
-                    <div class="book-detail-wrapper books-list-item"> <div class="book-image-column">
+                    <div class="book-detail-wrapper books-list-item">
+                        <div class="book-image-column">
                             <img src="${book.cover}" alt="${book.title}">
                         </div>
                         <div class="book-content-column">
