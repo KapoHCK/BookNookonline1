@@ -206,8 +206,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const openPreviewModalBtn = document.getElementById('openPreviewModalBtn');
 
     if (openPreviewModalBtn && bookPreviewModal) { // ვამოწმებთ, რომ ღილაკი და მოდალი არსებობს
-        // ამ bookDataForThisPage ობიექტი უნდა შეავსოთ კონკრეტული წიგნის მონაცემებით.
-        // ამ მაგალითისთვის ვიყენებთ "როგორ ვიმუშაოთ საკუთარ თავზე" მონაცემებს.
         openPreviewModalBtn.addEventListener('click', function(e) {
             e.preventDefault(); 
             openBookPreview('rogor-vimushaot-sakutar-tavze'); // გადავცემთ წიგნის ID-ს
@@ -249,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // ახლა, როცა ყველა წიგნი ჩაიტვირთა, დავამატოთ კლიკის დამმუშავებლები
-            const previewButtons = document.querySelectorAll('.book-list-item .preview-button');
+            const previewButtons = document.querySelectorAll('.books-list-item .preview-button');
             previewButtons.forEach(button => {
                 button.addEventListener('click', function(e) {
                     e.preventDefault();
