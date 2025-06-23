@@ -278,6 +278,56 @@ body {
     justify-content: center; /* Center items when wrapped */
 }
 
+/* Styles for the new books.html grid */
+.book-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 40px;
+    justify-items: center; /* Center grid items */
+    margin-top: 40px;
+}
+.book-list-item { /* Styles for individual book details within books.html */
+    padding: 20px;
+    background-color: var(--bg-color);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    max-width: 500px; /* Max width for each item in the grid */
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Center content horizontally */
+    text-align: center;
+}
+.book-list-item .book-image-column {
+    flex: none; /* Remove flex constraints */
+    width: 80%; /* Adjust width for item */
+    max-width: 250px; /* Max width */
+    margin-bottom: 20px;
+}
+.book-list-item .book-image-column img {
+    width: 100%;
+    height: auto;
+}
+.book-list-item .book-content-column {
+    flex: none; /* Remove flex constraints */
+    width: 100%;
+    padding-top: 0; /* No extra padding */
+    min-width: unset; /* Remove min-width */
+}
+.book-list-item .book-main-title {
+    font-size: 2em; /* Adjust title size for list item */
+    text-align: center;
+}
+.book-list-item .book-byline,
+.book-list-item .book-full-description {
+    text-align: center;
+}
+.book-list-item .purchase-box,
+.book-list-item .preview-button {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
 .book-image-column {
     flex: 0 0 350px; /* Fixed width for image column on desktop */
     max-width: 100%; /* Ensure it's responsive */
@@ -536,7 +586,7 @@ body {
 
 .page-content h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.4em; /* Slightly reduced page header font size */
+    font-size: 1.4em; /* Slightly reduced page heading */
     margin-top: 0;
     color: var(--text-color);
 }
