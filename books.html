@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>წიგნები - BookNook</title>
+    <link rel="icon" href="booknook_logo.ico" type="image/x-icon">
+    <meta name="description" content="BookNook-ის ყველა წიგნი ერთ ადგილას. აღმოაჩინე ახალი წიგნები ფსიქოლოგიასა და პიროვნულ ზრდაზე.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Manrope:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="site-wrapper" class="visible">
+        <header class="site-header">
+            <a href="index.html" class="logo-link"><img src="images/booknook_logo.png" alt="BookNook ლოგო" class="logo"></a>
+            <nav class="main-nav">
+                <a href="index.html">მთავარი</a>
+                <a href="books.html">წიგნები</a>
+                <a href="about.html">ჩვენს შესახებ</a>
+                <a href="contact.html">კონტაქტი</a>
+            </nav>
+        </header>
+
+        <main class="content-container">
+            <h2 class="content-title">ჩვენი წიგნები</h2>
+            <div id="books-list" class="book-list-grid">
+                </div>
+        </main>
+
+        <footer class="site-footer">
+            <p>&copy; 2025 BookNook. ყველა უფლება დაცულია.</p>
+        </footer>
+    </div>
+    
+    <a href="#" id="back-to-top" class="back-to-top-button">&#8593;</a>
+
+    <div id="bookPreviewModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div class="modal-body">
+                <div class="book-preview-header">
+                    <img id="modalBookCover" src="" alt="წიგნის ყდა" class="modal-book-cover">
+                    <div class="book-preview-info">
+                        <h2 id="modalBookTitle" class="modal-book-title"></h2>
+                        <p id="modalBookAuthor" class="modal-book-author"></p>
+                    </div>
+                </div>
+                <div class="book-preview-pages">
+                    </div>
+                <div class="page-navigation">
+                    <button id="prevPageBtn" class="nav-button">&lt;</button>
+                    <span id="pageCounter">1 / 2</span>
+                    <button id="nextPageBtn" class="nav-button">&gt;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
