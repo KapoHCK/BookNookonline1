@@ -19,8 +19,6 @@ body {
     color: var(--text-color);
     margin: 0;
     line-height: 1.7;
-    /* ეს padding-top რჩება! ის უზრუნველყოფს, რომ კონტენტი ჰედერის ქვემოთ იყოს
-       მაშინაც კი, როცა ჰედერი fixed გახდება სქროლისას. */
     padding-top: 80px; 
 }
 
@@ -64,7 +62,7 @@ body {
     align-items: center;
     padding: 1.5em 2.5em; 
     background-color: transparent; 
-    position: absolute; /* დავაბრუნეთ absolute-ზე, რომ JS-მა აკონტროლოს fixed */
+    position: absolute; 
     top: 0; 
     left: 0; 
     right: 0; 
@@ -74,7 +72,7 @@ body {
 
 /* როდესაც ჰედერი არ არის დასქროლლი (გამჭვირვალე ფონზე, Hero სექციაზე) */
 .main-nav a {
-    color: var(--light-text-color); /* ღია ტექსტი მუქ ფონზე */
+    color: var(--light-text-color); 
     margin: 0 15px; 
     text-decoration: none; 
     font-weight: bold;
@@ -85,17 +83,17 @@ body {
 
 /* როდესაც ჰედერი დასქროლლია (script.js-ის მიერ დამატებული 'scrolled' კლასი) */
 .site-header.scrolled {
-    position: fixed; /* JS ამატებს ამას */
-    background-color: rgba(255, 255, 255, 0.95); /* თეთრი, ცოტა ნაკლებად გამჭვირვალე ფონი */
+    position: fixed; 
+    background-color: rgba(255, 255, 255, 0.95); 
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 .site-header.scrolled .main-nav a { 
-    color: var(--text-color) !important; /* **აქ დავამატეთ !important** */
+    color: var(--text-color) !important; 
 }
 .site-header.scrolled .main-nav a::after { 
-    background-color: var(--primary-color) !important; /* **აქაც !important** */
+    background-color: var(--primary-color) !important; 
 } 
 
 .logo { max-width: 100px; }
@@ -107,7 +105,7 @@ body {
     height: 2px;
     bottom: 0; 
     left: 0; 
-    background-color: var(--accent-color); /* საწყისი ხაზის ფერი */
+    background-color: var(--accent-color); 
     transition: width 0.3s ease;
 }
 .main-nav a:hover::after { width: 100%; }
@@ -186,11 +184,17 @@ body {
 }
 
 /* წიგნის დეტალური გვერდის განლაგების დახვეწა */
-.book-detail-container {
-    gap: 50px; /* გავზარდეთ დაშორება სურათსა და ტექსტს შორის */
+/* შევცვალეთ .book-detail-container-დან .book-detail-wrapper-ზე */
+.book-detail-wrapper { 
+    display: flex; /* დარწმუნდით, რომ flexbox გამოიყენება */
+    align-items: center;
+    gap: 50px; 
+    max-width: 1100px;
+    margin: 60px auto; 
+    padding: 20px;
 }
 
-.book-detail-content {
+.book-detail-content { /* ამ კლასს არ იყენებთ HTML-ში, ამიტომ არ მოქმედებს */
     border-left: 3px solid var(--primary-color);
     padding-left: 30px;
 }
@@ -202,23 +206,23 @@ body {
 
 /* --- Book Preview Modal Styles --- */
 .modal {
-    display: none; /* თავდაპირველად დამალული */
-    position: fixed; /* ეკრანზე ფიქსირებული */
-    z-index: 2000; /* უზრუნველყოფს, რომ ყველაფერზე მაღლა იყოს */
+    display: none; 
+    position: fixed; 
+    z-index: 2000; 
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto; /* საჭიროების შემთხვევაში სქროლირება */
-    background-color: rgba(0,0,0,0.7); /* მუქი, გამჭვირვალე ფონი */
-    justify-content: center; /* ცენტრში განლაგება */
-    align-items: center; /* ცენტრში განლაგება */
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.7); 
+    justify-content: center; 
+    align-items: center; 
     padding: 20px;
-    box-sizing: border-box; /* padding-ის ზომაში ჩართვა */
+    box-sizing: border-box; 
 }
 
 .modal.active {
-    display: flex; /* JavaScript-ით აქტივაციისას გამოჩნდება */
+    display: flex; 
 }
 
 .modal-content {
@@ -227,10 +231,10 @@ body {
     padding: 30px;
     border-radius: 8px;
     position: relative;
-    max-width: 900px; /* მოდალის მაქსიმალური სიგანე */
-    width: 100%; /* ადაპტაცია ეკრანზე */
+    max-width: 900px; 
+    width: 100%; 
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    animation: scaleIn 0.3s ease-out; /* გამოჩენის ანიმაცია */
+    animation: scaleIn 0.3s ease-out; 
     box-sizing: border-box;
 }
 
@@ -260,9 +264,9 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    max-height: 80vh; /* მოდალის შიგთავსის მაქსიმალური სიმაღლე */
-    overflow-y: auto; /* შიგთავსის სქროლირება თუ საჭიროა */
-    padding-right: 10px; /* სქროლბარისთვის ადგილი */
+    max-height: 80vh; 
+    overflow-y: auto; 
+    padding-right: 10px; 
 }
 
 .book-preview-header {
@@ -275,11 +279,11 @@ body {
 }
 
 .modal-book-cover {
-    width: 150px; /* ყდის სურათის ზომა */
+    width: 150px; 
     height: auto;
     border-radius: 4px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    flex-shrink: 0; /* არ დაპატარავდეს */
+    flex-shrink: 0; 
 }
 
 .book-preview-info {
@@ -300,19 +304,19 @@ body {
 }
 
 .book-preview-pages {
-    position: relative; /* საჭიროა გვერდების ანიმაციისთვის */
-    min-height: 200px; /* მინიმალური სიმაღლე, რომ გვერდები ჩანდეს */
+    position: relative; 
+    min-height: 200px; 
 }
 
 .page-content {
-    display: none; /* თავდაპირველად ყველა გვერდი დამალულია */
+    display: none; 
     padding: 10px 0;
     line-height: 1.8;
 }
 
 .page-content.active-page {
-    display: block; /* აქტიური გვერდი გამოჩნდება */
-    animation: pageFlipIn 0.5s ease-out; /* გადაფურცვლის ანიმაცია */
+    display: block; 
+    animation: pageFlipIn 0.5s ease-out; 
 }
 
 /* Page Flip In Animation */
@@ -320,7 +324,7 @@ body {
     from {
         transform: rotateY(-90deg) scale(0.9);
         opacity: 0.5;
-        transform-origin: left center; /* ანიმაციის დასაწყისი მარცხენა კიდიდან */
+        transform-origin: left center; 
     }
     to {
         transform: rotateY(0deg) scale(1);
